@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import "app/views/views-style.css";
+@import "app/shared/global-styles.css";
+@import "primeicons/primeicons.css";
+
+html{
+   font-family: 'Lato';
+   height: 100%;
+   padding: 0;
+   margin: 0;
+}
+
+body {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+ }

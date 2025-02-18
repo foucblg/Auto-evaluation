@@ -1,0 +1,102 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 16px;
+  margin-top: 5%;
+}
+
+.nb-choice {
+  color: #696969;
+}
+
+.answer-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+#answer-choice {
+  display: flex;
+  align-content: center;
+  width: 100%;
+  border: 2px solid #929292;
+  border-radius: 8px;
+  padding: 4px;
+  margin: 0 auto;
+  align-items: center;
+  word-wrap: break-word;
+  color: #333333;
+}
+
+.radio{
+  padding-left: 15px;
+  padding-right: 15px;
+  --p-radiobutton-icon-vertical-align: middle;
+  --p-radiobutton-vertical-align: middle;
+  --p-radiobutton-box-vertical-align: middle;
+  --p-radiobutton-icon-align-items: center;
+  --p-radiobutton-box-align-items: center;
+  --p-radiobutton-align-items: center;
+  
+  --p-radiobutton-display: inline-block;
+  --p-radiobutton-height: 24px;
+  --p-radiobutton-width: 24px;
+  --p-radiobutton-icon-size: 16px;
+  --p-radiobutton-icon-checked-color:#333333;
+  --p-radiobutton-icon-checked-hover-color:#333333;
+  --p-radiobutton-border-color:#333333;
+  --p-radiobutton-hover-border-color:#333333;
+  --p-radiobutton-checked-border-color:#333333;
+  --p-radiobutton-checked-hover-border-color:#333333;
+}
+
+.check{
+  padding-left: 15px;
+  padding-right: 15px;
+  --p-checkbox-border-color:#333333;
+  --p-checkbox-checked-focus-border-color:#333333;
+  --p-checkbox-checked-hover-border-color:#333333;
+  --p-checkbox-checked-border-color:#333333;
+  --p-checkbox-hover-border-color:#333333;
+  --p-checkbox-border-color:#333333;
+  --p-checkbox-checked-background:#333333;
+  --p-checkbox-checked-hover-background:#333333;
+}
+
+#answer-choice:hover{
+  border: 2px solid #333333;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 12px 24px 0px;
+}
+
+#answer-choice:has(:checked) {
+  border: 2px solid #DA3635;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 12px 24px 0px;  
+}
+
+.choice-text {
+  display: inline-block;
+  vertical-align: middle;
+  align-items: middle;
+  text-align: middle;
+  font-size: 1.5em;
+}
+
+.div-error{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  vertical-align: middle;
+  color:#333333;
+}
+
+.bouton-error{
+  --p-button-padding-x: 64px;
+}
+
+.p-error{
+  --p-dialog-colo:#333333;
+}
