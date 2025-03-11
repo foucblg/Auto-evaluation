@@ -1,0 +1,11 @@
+<div>
+  <h1>L'audit est fini</h1>
+  <p>
+    Vous avez obtenus les scores suivants : 
+    <br />
+    @for (topic of dataService.topics; track $index){
+      {{ topic }} : {{ progressService.score()[topic][0] }} / {{ progressService.score()[topic][1] }}
+      <br />
+    }
+  </p>
+</div>

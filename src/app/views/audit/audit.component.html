@@ -1,5 +1,5 @@
 @if (progressService.questionNumber() === 0) {
-  <app-quiz-homepage></app-quiz-homepage>
+  <app-autoeval-homepage></app-autoeval-homepage>
 } @else if (progressService.hasEnded()) {
   <app-quiz-endpage></app-quiz-endpage>
 } @else {
@@ -11,22 +11,13 @@
       <p>{{ (progressPercentage() | number: "1.0-0") + " %" }}</p>
       <p-progressbar class="progress-bar" [value]="progressPercentage()" />
     </div>
-    <app-quiz-card></app-quiz-card>
+    <app-audit-card></app-audit-card>
     <div class="next">
       <p-divider class="divider" />
-      @if (!progressService.answered()) {
-        <p-button
-          class="button-page"
-          (click)="quizCard()!.choiceBox()!.tryToAnswer()"
-        >
-          Répondre
-        </p-button>
-      } @else {
-        <p-button class="button-page" (click)="progressService.goToNext()">
-          Suivant
-          <i class="pi pi-arrow-right"></i>
-        </p-button>
-      }
+      <p-button class="button-page" (click)="auditCard()!.choiceBox()!.answer()">
+        Suivant
+        <i class="pi pi-arrow-right"></i>
+      </p-button>
     </div>
   </div>
 }

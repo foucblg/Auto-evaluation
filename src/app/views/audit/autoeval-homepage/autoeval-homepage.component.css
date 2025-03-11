@@ -29,16 +29,11 @@
 .presentation-section p-image {
   margin: auto;
 }
-
-.n-questions-selector {
-  display: flex;
-  flex-direction: row;
-  width: fit-content;
-  border-radius: 8px;
-  border: 2px solid gray;
-  padding: 0 16px;
-  gap: 16px;
-  align-items: center;
+.presentation-section p {
+  width: 600px;
+  max-width: 100%;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .start-div {
@@ -57,17 +52,6 @@
   grid-template-columns: 1fr 1.2fr 1fr;
   padding: 8px;
   align-items: center;
-}
-
-.n-questions-text {
-  height: 100%;
-  width: 100%;
-  border-radius: 4px;
-  justify-content: center;
-  align-content: center;
-  padding: 8px;
-  border: 1px solid gray;
-  background-color: var(--p-gray-200);
 }
 
 .start-game-button {

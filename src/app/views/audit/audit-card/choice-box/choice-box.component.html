@@ -1,0 +1,24 @@
+<form [formGroup]="answerForm">
+  <div class="answer-box">
+    @for (choice of dataService.possibleAnswers; track $index) {
+      <label id="answer-choice" class = "flex items-center gap-2">
+        <p-radiobutton [value]="$index" formControlName="selectedAnswer"  class="radio"/>
+        <p class="choice-text">
+          {{ choice }}
+        </p>
+      </label>
+    }
+  </div>
+</form>
+
+<p-dialog
+  header="Veuillez choisir au moins une option."
+  [modal]="false"
+  [closable]="false"
+  [(visible)]="dialogVisible"
+  class="p-error"
+>
+  <div class="div-error">
+    <p-button label="Ok" (click)="dialogVisible = false" class ="bouton-error"/>
+  </div>
+</p-dialog>

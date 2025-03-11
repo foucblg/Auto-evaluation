@@ -6,30 +6,33 @@ import { ImageModule } from 'primeng/image';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PanelModule } from 'primeng/panel';
 import { ProgressService } from '../../../shared/services/progress-service';
-import { DataService } from '../../../shared/services/quiz-service';
+import { DataService } from '../../../shared/services/audit-service';
+import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-quiz-homepage',
+  selector: 'app-autoeval-homepage',
   imports: [ButtonModule, DividerModule, PanelModule, InputNumberModule, BlockUIModule, ImageModule],
-  templateUrl: './quiz-homepage.component.html',
-  styleUrl: './quiz-homepage.component.css'
+  templateUrl: './autoeval-homepage.component.html',
+  styleUrl: './autoeval-homepage.component.css'
 })
-export class QuizHomepageComponent {
+export class AutoevalHomepageComponent {
   /* Page de présentation du quiz
   * Permet la séléction du nombre de questions par multiples de la longueur du cycle de thèmes
   */
   progressService = inject(ProgressService);
   dataService = inject(DataService);
-  numberOfTopics = this.dataService.getNumberOfTopics();
   possibleNumberOfQuestionsPerTopic = [1, 2, 3];
   iNumberOfQuestions = 0;
 
-  constructor(
-  ) {
+  constructor(private router:Router) {
     // Au chargement du site, cette page est affichée,
     // si l'URL n'est pas celle de la page de départ, elle est redirigée
     this.progressService.goToBegining();
+  }
+
+  continuer(){
+    this.router.navigate(['./contexte'])
   }
 
   adjustNumberOfQuestions(c: number) {

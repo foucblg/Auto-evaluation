@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
-import { QuizComponent } from './views/quiz/quiz.component';
+import { ContexteComponent } from './views/audit/autoeval-contexte/autoeval-contexte.component';
+import { AuditComponent } from './views/audit/audit.component';
 
 export const routes: Routes = [
   {
-    path: 'quiz', title: "Quiz Inclusif, le jeu", children: [
-      { path: '**', component: QuizComponent },
+    path: 'audit', title: "Audit d'inclusivité", children: [
+      { path: '**', component: AuditComponent },
     ],
   },
-  { path: '', redirectTo: 'quiz/accueil', pathMatch: 'full' },
+  {path: 'contexte', component: ContexteComponent},
+  { path: '', redirectTo: 'audit/accueil', pathMatch: 'full' },
 ];
