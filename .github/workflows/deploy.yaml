@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18  # Adapter selon la version de ton projet
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
@@ -41,7 +41,7 @@ jobs:
             </head>
             <body>
             </body>
-          </html>' > dist/Auto-evaluation/browser/404.html
+          </html>' > dist/autoeval/browser/404.html
     
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
