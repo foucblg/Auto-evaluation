@@ -94,7 +94,7 @@
         "outOf":1
       }
     ],
-      "Interface utilisateur ": [
+      "Interface utilisateur": [
       {
         "question": "Avez-vous prototypé vos écrans ?",
         "outOf":1
@@ -128,7 +128,7 @@
         "outOf":4
       }
     ],
-      "Editorial ": [
+      "Editorial": [
       {
         "question": "Utilisez-vous le langage clair ?",
         "outOf":1
