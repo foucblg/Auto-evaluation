@@ -12,9 +12,4 @@ import { DataService } from '../../../shared/services/audit-service';
 export class QuizEndpageComponent {
   progressService = inject(ProgressService);
   dataService = inject(DataService);
-
-  constructor() {
-    console.log(this.dataService.topics);
-    console.log(this.progressService.score);
-  }
 }

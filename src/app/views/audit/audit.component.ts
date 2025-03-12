@@ -14,14 +14,16 @@ import { AuditCardComponent } from './audit-card/audit-card.component';
   selector: 'app-audit',
   templateUrl: './audit.component.html',
   styleUrl: './audit.component.css',
-  imports: [CommonModule, ButtonModule, ToastModule,AutoevalHomepageComponent,AuditCardComponent, ProgressBarModule, DividerModule, QuizEndpageComponent]
+  imports: [CommonModule, ButtonModule, ToastModule,AuditCardComponent, ProgressBarModule, DividerModule, QuizEndpageComponent]
 })
 
 export class AuditComponent {
-  /* Gère les cartes quiz par rapport à l'avancement dans le quiz et affiche une barre de progression le cas échéant*/
   progressService = inject(ProgressService);
   dataService = inject(DataService);
   auditCard = viewChild(AuditCardComponent);
-  progressPercentage = computed(() => this.progressService.questionNumber() / (this.dataService.numberOfQuestions+1) * 100)
+  progressPercentage = computed(() => this.dataService.questionNumber() / 10 * 100)
 
+  back(){
+    this.progressService.goToPrevious() 
+  }
 }

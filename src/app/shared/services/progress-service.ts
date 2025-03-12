@@ -13,41 +13,39 @@ export class ProgressService {
   dataService = inject(DataService);
   currentAnswer = signal<number>(0);
   score = signal(Object.fromEntries(this.dataService.topics.map(topic => [topic, [0, 0]])));
-  questionNumber = signal(0);
-  hasEnded = signal(false);
+  answers = signal(<number[]>[]);
 
   goToBegining() {
-    this.questionNumber.set(0);
-    this.hasEnded.set(false);
-    this.router.navigate(["audit", "accueil"], { onSameUrlNavigation: 'ignore' });
+    this.router.navigate(["audit", "contexte"], { onSameUrlNavigation: 'ignore' });
   }
 
   start() {
     this.dataService.startAudit();
-    this.questionNumber.set(1);
-    this.router.navigate(["audit", this.questionNumber().toString()], {
-      queryParams: { theme: this.dataService.currentTopic()},
-      replaceUrl: this.questionNumber() > 0,
+    this.router.navigate(["audit", this.dataService.questionNumber().toString()], {
     });
   }
 
   goToEnd() {
-    /* Envoie sur la page de fin */
-    this.hasEnded.set(true);
     this.router.navigate(["audit", "end"], { replaceUrl: true });
   }
 
   goToNext() {
-    console.log(this.dataService.topics)
     this.dataService.getNewQuestion();
-    if (!this.dataService.hasEnded()) {
-      this.questionNumber.update(n => n + 1);
-      this.router.navigate(["audit", this.questionNumber().toString()], {
-        queryParams: { theme: this.dataService.currentTopic()},
-        replaceUrl: this.questionNumber() > 0,
+    if (this.dataService.step() !== 'end') {
+      this.router.navigate(["audit", this.dataService.questionNumber().toString()], {
       });
     } else {
       this.goToEnd();
+    }
+  }
+
+  goToPrevious() {
+    this.dataService.getPreviousQuestion();
+    if (this.dataService.step() !== 'start') {
+      this.router.navigate(["audit", this.dataService.questionNumber().toString()], {
+      });
+    } else {
+      this.goToBegining();
     }
   }
 
@@ -58,7 +56,19 @@ export class ProgressService {
         scores[this.dataService.currentTopic()][1] += this.dataService.currentSegment()!.outOf;
         return scores;
       });
-      this.goToNext();
     }
+    if (this.answers().length === this.dataService.questionNumber()) {
+      this.answers.update(answers => {
+        answers.push(this.currentAnswer());
+        return answers;
+      });
+    }
+    else{
+      this.answers.update(answers => {
+        answers[this.dataService.questionNumber()] = this.currentAnswer();
+        return answers;
+      });
+    }
+    this.goToNext();
   }
 }

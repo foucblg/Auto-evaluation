@@ -7,40 +7,66 @@ import { AuditSegment } from "../types/interfaces";
 })
 export class DataService {
   topics = auditData["topics"];
-  tmp_topics = this.topics.slice();
   auditSegments = auditData["questions"];
-  questionNumber = signal(-1);
-  hasEnded = signal(false);
+  questionNumber = signal(0);
+  questionNumberTopic = signal(0);
+  topicNumber = signal(0);
   currentSegment = signal<AuditSegment | undefined>(undefined);
   currentTopic = signal("");
   possibleAnswers = auditData["possible_answers"];
-  numberOfQuestions = Object.values(this.auditSegments).reduce((acc, val) => acc + val.length, 0);
+  numberOfQuestions = Object.fromEntries(this.topics.map(topic => [topic, this.auditSegments[topic].length]));
+  step = signal('');
 
 
   startAudit() {
-    this.questionNumber.set(0);
-    if (this.tmp_topics.length != 0) {
-      this.currentTopic.set(this.tmp_topics.shift()!);
+    this.step.set('start');
+    if (this.topics.length != 0) {
+      this.currentTopic.set(this.topics[this.topicNumber()]);
     }
     else {
       console.log("Aucun topic n'est défini");
     }
-    this.currentSegment.set(this.auditSegments[this.currentTopic()].shift()); 
-    this.hasEnded.set(false);
+    this.currentSegment.set(this.auditSegments[this.currentTopic()][this.questionNumber()]); 
   }
 
   getNewQuestion() {
-    if (this.auditSegments[this.currentTopic()].length === 0) {
-      if (this.tmp_topics.length != 0) {
-        this.currentTopic.set(this.tmp_topics.shift()!);
-        this.currentSegment.set(this.auditSegments[this.currentTopic()].shift());  
+    this.step.set('ongoing');
+    if (this.questionNumberTopic() === this.numberOfQuestions[this.currentTopic()]-1) { 
+      // Si on est à la dernière question du thème
+      if (this.currentTopic() != this.topics[this.topics.length-1]) {
+        // Si on est pas au dernier thème
+        this.questionNumberTopic.set(0);
+        this.topicNumber.update(n => n + 1);
+        this.currentTopic.set(this.topics[this.topicNumber()]);
+        this.currentSegment.set(this.auditSegments[this.currentTopic()][this.questionNumberTopic()]);  
+        this.questionNumber.update(n => n + 1);
       }
       else {
-        this.hasEnded.set(true);
+        this.step.set('end');
       }
     }
     else {
-      this.currentSegment.set(this.auditSegments[this.currentTopic()].shift());
+      this.questionNumberTopic.update(n => n + 1);
+      this.questionNumber.update(n => n + 1);
+      this.currentSegment.set(this.auditSegments[this.currentTopic()][this.questionNumberTopic()]);
+    }
+  }
+
+  getPreviousQuestion() {
+    if (this.questionNumberTopic() > 0) {
+      this.questionNumberTopic.update(n => n - 1);
+      this.currentSegment.set(this.auditSegments[this.currentTopic()][this.questionNumberTopic()]);
+      this.questionNumber.update(n => n - 1);
+    } 
+    else if (this.topicNumber() > 0) {
+      this.topicNumber.update(n => n - 1);
+      this.currentTopic.set(this.topics[this.topicNumber()]);
+      this.questionNumberTopic.set(this.auditSegments[this.currentTopic()].length - 1);
+      this.currentSegment.set(this.auditSegments[this.currentTopic()][this.questionNumberTopic()]);
+      this.questionNumber.update(n => n - 1);
+    }
+    else{
+      this.step.set('start');
     }
   }
 }

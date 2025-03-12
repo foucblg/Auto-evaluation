@@ -1,4 +1,4 @@
-import { Component, computed, inject, Input } from '@angular/core';
+import { Component, effect, inject, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -15,12 +15,19 @@ import { ButtonModule } from 'primeng/button';
 })
 export class ChoiceBoxComponent {
   answerForm = new FormGroup({
-    selectedAnswer: new FormControl(null) // Ajoute un contrôle pour les choix
+    selectedAnswer: new FormControl<number | null>(null)
   });
   progressService = inject(ProgressService);
   dataService = inject(DataService);
-  quiz_segment = this.dataService.currentSegment();
   dialogVisible = false;
+
+  constructor() {
+    effect(() => {
+      const selected = this.progressService.answers()[this.dataService.questionNumber()];
+      this.answerForm.get('selectedAnswer')?.setValue(selected);
+    });
+  }
+
   ngOnInit() {
     this.answerForm!.reset();
   }
@@ -35,6 +42,5 @@ export class ChoiceBoxComponent {
       this.dialogVisible = true;
     }
   }
-
 }
 

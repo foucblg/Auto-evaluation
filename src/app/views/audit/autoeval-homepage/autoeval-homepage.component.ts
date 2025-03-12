@@ -22,20 +22,10 @@ export class AutoevalHomepageComponent {
   */
   progressService = inject(ProgressService);
   dataService = inject(DataService);
-  possibleNumberOfQuestionsPerTopic = [1, 2, 3];
-  iNumberOfQuestions = 0;
 
-  constructor(private router:Router) {
-    // Au chargement du site, cette page est affichée,
-    // si l'URL n'est pas celle de la page de départ, elle est redirigée
-    this.progressService.goToBegining();
-  }
+  constructor(private router:Router) {}
 
   continuer(){
-    this.router.navigate(['./contexte'])
-  }
-
-  adjustNumberOfQuestions(c: number) {
-    this.iNumberOfQuestions += c;
+    this.router.navigate(['/audit/contexte'])
   }
 }

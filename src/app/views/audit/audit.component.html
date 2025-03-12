@@ -1,12 +1,11 @@
-@if (progressService.questionNumber() === 0) {
-  <app-autoeval-homepage></app-autoeval-homepage>
-} @else if (progressService.hasEnded()) {
+@if (dataService.step() == "end") {
   <app-quiz-endpage></app-quiz-endpage>
-} @else {
+} 
+@else {
   <div class="quiz">
     <div class="progress">
       <p class="question-text">
-        {{ "Question " + progressService.questionNumber() }}
+        {{ "Question " + dataService.questionNumber() }}
       </p>
       <p>{{ (progressPercentage() | number: "1.0-0") + " %" }}</p>
       <p-progressbar class="progress-bar" [value]="progressPercentage()" />
@@ -14,6 +13,10 @@
     <app-audit-card></app-audit-card>
     <div class="next">
       <p-divider class="divider" />
+      <p-button class="button-page" (click)="back()">
+        Retour
+        <i class="pi pi-arrow-right"></i>
+      </p-button>
       <p-button class="button-page" (click)="auditCard()!.choiceBox()!.answer()">
         Suivant
         <i class="pi pi-arrow-right"></i>
