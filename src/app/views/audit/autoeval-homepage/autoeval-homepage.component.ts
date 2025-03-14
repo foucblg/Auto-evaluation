@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 })
 export class AutoevalHomepageComponent {
   /* Page de présentation du quiz
-  * Permet la séléction du nombre de questions par multiples de la longueur du cycle de thèmes
+  * Permet la sélection du nombre de questions par multiples de la longueur du cycle de thèmes
   */
   progressService = inject(ProgressService);
   dataService = inject(DataService);

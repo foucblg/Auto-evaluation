@@ -1,11 +1,12 @@
+<p class="nb-choice">Une seule réponse possible</p>
+
+
 <form [formGroup]="answerForm">
   <div class="answer-box">
     @for (choice of dataService.possibleAnswers; track $index) {
-      <label id="answer-choice" class = "flex items-center gap-2">
+      <label class="answer-choice">
         <p-radiobutton [value]="$index" formControlName="selectedAnswer"  class="radio"/>
-        <p class="choice-text">
-          {{ choice }}
-        </p>
+        <p class="choice-text">{{ choice }}</p>
       </label>
     }
   </div>

@@ -6,9 +6,9 @@
   height: 100%;
 }
 
-/* Navbar */
-.navbar-div {
-  height: 61px;
+/* Header */
+.header-div {
+  height: 66px;
 }
 
 /* Contenu principal */
@@ -19,11 +19,12 @@ main {
   height: 100%;
 }
 
-.quiz-div {
+.audit-div {
   flex: 1; /* Prend tout l'espace disponible */
   min-height: 50vh; /* Hauteur minimale pour le contenu */
   overflow: auto; /* Ajoute un défilement si le contenu est trop long */
   height: 100%;
+  padding: 16px;
 }
 
 /* Footer */
@@ -37,7 +38,7 @@ footer {
   padding: 0 28px;
   font-size: 12px;
   width: 100%;
-  margin-top: auto; /* Force le footer à rester en bas */
+  margin-top: auto;
 }
 
 footer ul {
@@ -45,7 +46,7 @@ footer ul {
   padding: 0;
   margin: 0;
   display: flex;
-  gap: 12px; /* Espace entre les éléments */
+  gap: 12px;
 }
 
 footer li {
@@ -60,7 +61,13 @@ footer a {
   vertical-align: middle;
 }
 
+footer a:hover{
+  text-decoration: underline;
+}
 
+footer p {
+  color: #ffffff;
+}
 footer .right-section {
   display: flex;
   align-items: center;

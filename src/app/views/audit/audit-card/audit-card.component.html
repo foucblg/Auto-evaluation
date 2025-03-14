@@ -1,5 +1,7 @@
 <div class="theme">
-  <span>Thème : {{ dataService.currentTopic() }}</span>
+  <span> {{ dataService.currentTopic() }}</span>
 </div>
 <h1 class="question">{{ audit_segment()?.question }}</h1>
+
+<!-- Mise en place de la carte -->
 <app-choice-box></app-choice-box>
