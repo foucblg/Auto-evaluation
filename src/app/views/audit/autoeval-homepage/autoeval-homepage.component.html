@@ -1,25 +1,26 @@
 <div class="presentation-section">
-  <h1>Audit inclusisivité</h1>
+  <h1>Audit inclusivité</h1>
   <h2>Concevons nos services numériques pour tout le monde !</h2>
   <p-image
     src="images/banner.png"
-    alt="Image de présentation du autoeval"
+    alt="Image de présentation de l'auto évaluation"
     [imageStyle]="{ objectFit: 'contain' }"
-    width="90%"
+    width="100%"
   />
     <p>
       Ce support d'audit est utilisé par l'équipe inclusivité pour attribuer un score chiffré puis un label de A à E aux services numériques de la Métropole de Lyon.
 
     </p>
 </div>
+
 <div class="lower-section">
   <p-divider />
   <div class="start-div">
     <p-button
       class="start-game-button"
       (click)="continuer()"
-    >
-      Passer à l'action
+      aria-label="Commencer le l'auto évaluation"
+      label = "Passer à l'action">
     </p-button>
   </div>
 </div>

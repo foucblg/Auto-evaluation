@@ -1,3 +1,4 @@
+<!-- Mise en place soit de la page de garde, soit de la page de fin ou alors des cartes questions -->
 @if (dataService.step() == "end") {
   <app-quiz-endpage></app-quiz-endpage>
 } 
@@ -10,17 +11,31 @@
       <p>{{ (progressPercentage() | number: "1.0-0") + " %" }}</p>
       <p-progressbar class="progress-bar" [value]="progressPercentage()" />
     </div>
+    
+    <!-- Mise en place des cartes de l'audit -->
     <app-audit-card></app-audit-card>
-    <div class="next">
+
+    <!-- Mise en place des boutons pour avancer dans l'audit -->
+    <div class="lower-section">
       <p-divider class="divider" />
-      <p-button class="button-page" (click)="back()">
-        Retour
-        <i class="pi pi-arrow-right"></i>
+
+        <div class="start-div">
+        <p-button 
+          class="retour-page" 
+          (click)="back()"
+          severity="secondary"
+          variant="outlined">
+            Retour
+          <i class="pi pi-arrow-right"></i>
+        </p-button>
+        <p-button 
+        class="suivant-page" 
+        (click)="auditCard()!.choiceBox()!.answer()"
+        severity="primary">
+          Suivant
+          <i class="pi pi-arrow-right"></i>
       </p-button>
-      <p-button class="button-page" (click)="auditCard()!.choiceBox()!.answer()">
-        Suivant
-        <i class="pi pi-arrow-right"></i>
-      </p-button>
+      </div>
     </div>
   </div>
 }

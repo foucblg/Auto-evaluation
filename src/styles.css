@@ -15,3 +15,7 @@ body {
    display: flex;
    flex-direction: column;
  }
+
+ h1, h2, h3, p {
+   color: #333333;
+ }
