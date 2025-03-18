@@ -14,14 +14,17 @@ import { AuditCardComponent } from './audit-card/audit-card.component';
   selector: 'app-audit',
   templateUrl: './audit.component.html',
   styleUrl: './audit.component.css',
-  imports: [CommonModule, ButtonModule, ToastModule,AuditCardComponent, ProgressBarModule, DividerModule, QuizEndpageComponent]
+  imports: [CommonModule, ButtonModule, ToastModule, AuditCardComponent, ProgressBarModule, DividerModule, QuizEndpageComponent]
 })
 
 export class AuditComponent {
   progressService = inject(ProgressService);
   dataService = inject(DataService);
   auditCard = viewChild(AuditCardComponent);
-  progressPercentage = computed(() => this.dataService.questionNumber() / 10 * 100)
+  cat = computed(() => this.dataService.currentTopic()); // Nom de la catégorie actuelle
+  index_cat = computed(() => this.categories.indexOf(this.cat())); // Index de la catégorie actuelle
+  percentage = computed(() => this.dataService.questionNumberTopic() / this.dataService.numberOfQuestions[this.dataService.currentTopic()]*100); // Pourcentage de progression
+  categories: string[] = this.dataService.topics; // Liste des catégories
 
   back(){
     this.progressService.goToPrevious() 
