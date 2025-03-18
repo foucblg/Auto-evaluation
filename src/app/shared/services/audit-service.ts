@@ -16,6 +16,7 @@ export class DataService {
   possibleAnswers = auditData["possible_answers"];
   numberOfQuestions = Object.fromEntries(this.topics.map(topic => [topic, this.auditSegments[topic].length]));
   step = signal('');
+  totalQuestions:number = 0
 
 
   startAudit() {
@@ -69,4 +70,12 @@ export class DataService {
       this.step.set('start');
     }
   }
+
+  getTotalQuestions(){
+    for (let i =0; i<this.topics.length; i++){
+      this.totalQuestions = this.totalQuestions + this.numberOfQuestions[this.topics[i]]
+    }
+    return this.totalQuestions
+  };
 }
+
