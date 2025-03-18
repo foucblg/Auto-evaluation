@@ -23,7 +23,7 @@ export class AuditComponent {
   auditCard = viewChild(AuditCardComponent);
   cat = computed(() => this.dataService.currentTopic()); // Nom de la catégorie actuelle
   index_cat = computed(() => this.categories.indexOf(this.cat())); // Index de la catégorie actuelle
-  percentage = computed(() => this.dataService.questionNumber() / this.dataService.numberOfQuestions[this.dataService.currentTopic()]*100); // Pourcentage de progression
+  percentage = computed(() => this.dataService.questionNumberTopic() / this.dataService.numberOfQuestions[this.dataService.currentTopic()]*100); // Pourcentage de progression
   categories: string[] = this.dataService.topics; // Liste des catégories
 
   back(){
