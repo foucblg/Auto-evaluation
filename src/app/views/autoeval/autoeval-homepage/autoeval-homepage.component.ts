@@ -6,7 +6,7 @@ import { ImageModule } from 'primeng/image';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PanelModule } from 'primeng/panel';
 import { ProgressService } from '../../../shared/services/progress-service';
-import { DataService } from '../../../shared/services/audit-service';
+import { DataService } from '../../../shared/services/autoeval-service';
 import { Router } from '@angular/router';
 
 
@@ -17,8 +17,8 @@ import { Router } from '@angular/router';
   styleUrl: './autoeval-homepage.component.css'
 })
 export class AutoevalHomepageComponent {
-  /* Page de présentation du quiz
-  * Permet la sélection du nombre de questions par multiples de la longueur du cycle de thèmes
+  /* Page de présentation de l'auto-évaluation
+  * Permet la séléction du nombre de questions par multiples de la longueur du cycle de thèmes
   */
   progressService = inject(ProgressService);
   dataService = inject(DataService);
@@ -26,6 +26,6 @@ export class AutoevalHomepageComponent {
   constructor(private router:Router) {}
 
   continuer(){
-    this.router.navigate(['/audit/contexte'])
+    this.router.navigate(['/autoeval/contexte'])
   }
 }

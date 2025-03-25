@@ -1,25 +1,25 @@
 import { Injectable, signal } from "@angular/core";
-import { auditData } from "../../app.component";
-import { AuditSegment } from "../types/interfaces";
+import { autoevalData } from "../../app.component";
+import { AutoevalSegment } from "../types/interfaces";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  topics = auditData["topics"];
-  auditSegments = auditData["questions"];
+  topics = autoevalData["topics"];
+  autoevalSegments = autoevalData["questions"];
   questionNumber = signal(0);
   questionNumberTopic = signal(0);
   topicNumber = signal(0);
-  currentSegment = signal<AuditSegment | undefined>(undefined);
+  currentSegment = signal<AutoevalSegment | undefined>(undefined);
   currentTopic = signal("");
-  possibleAnswers = auditData["possible_answers"];
-  numberOfQuestions = Object.fromEntries(this.topics.map(topic => [topic, this.auditSegments[topic].length]));
+  possibleAnswers = autoevalData["possible_answers"];
+  numberOfQuestions = Object.fromEntries(this.topics.map(topic => [topic, this.autoevalSegments[topic].length]));
   step = signal('');
   totalQuestions:number = 0
 
 
-  startAudit() {
+  startAutoeval() {
     this.step.set('start');
     if (this.topics.length != 0) {
       this.currentTopic.set(this.topics[this.topicNumber()]);
@@ -27,7 +27,7 @@ export class DataService {
     else {
       console.log("Aucun topic n'est défini");
     }
-    this.currentSegment.set(this.auditSegments[this.currentTopic()][this.questionNumber()]); 
+    this.currentSegment.set(this.autoevalSegments[this.currentTopic()][this.questionNumber()]); 
   }
 
   getNewQuestion() {
@@ -39,7 +39,7 @@ export class DataService {
         this.questionNumberTopic.set(0);
         this.topicNumber.update(n => n + 1);
         this.currentTopic.set(this.topics[this.topicNumber()]);
-        this.currentSegment.set(this.auditSegments[this.currentTopic()][this.questionNumberTopic()]);  
+        this.currentSegment.set(this.autoevalSegments[this.currentTopic()][this.questionNumberTopic()]);  
         this.questionNumber.update(n => n + 1);
       }
       else {
@@ -49,21 +49,21 @@ export class DataService {
     else {
       this.questionNumberTopic.update(n => n + 1);
       this.questionNumber.update(n => n + 1);
-      this.currentSegment.set(this.auditSegments[this.currentTopic()][this.questionNumberTopic()]);
+      this.currentSegment.set(this.autoevalSegments[this.currentTopic()][this.questionNumberTopic()]);
     }
   }
 
   getPreviousQuestion() {
     if (this.questionNumberTopic() > 0) {
       this.questionNumberTopic.update(n => n - 1);
-      this.currentSegment.set(this.auditSegments[this.currentTopic()][this.questionNumberTopic()]);
+      this.currentSegment.set(this.autoevalSegments[this.currentTopic()][this.questionNumberTopic()]);
       this.questionNumber.update(n => n - 1);
     } 
     else if (this.topicNumber() > 0) {
       this.topicNumber.update(n => n - 1);
       this.currentTopic.set(this.topics[this.topicNumber()]);
-      this.questionNumberTopic.set(this.auditSegments[this.currentTopic()].length - 1);
-      this.currentSegment.set(this.auditSegments[this.currentTopic()][this.questionNumberTopic()]);
+      this.questionNumberTopic.set(this.autoevalSegments[this.currentTopic()].length - 1);
+      this.currentSegment.set(this.autoevalSegments[this.currentTopic()][this.questionNumberTopic()]);
       this.questionNumber.update(n => n - 1);
     }
     else{

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import * as data from './shared/assets/data/questions_final.json';
-import { AuditData } from './shared/types/interfaces';
+import { AutoevalData } from './shared/types/interfaces';
 import { HeaderComponent } from "./views/header/header.component";
 
 @Component({
@@ -13,7 +13,7 @@ import { HeaderComponent } from "./views/header/header.component";
 })
 export class AppComponent {
   title = 'INCLUSIF: Le jeu';
-  auditData = auditData;
+  autoevalData = autoevalData;
 }
 
-export const auditData: AuditData = data;
+export const autoevalData: AutoevalData = data;

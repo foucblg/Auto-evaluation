@@ -5,7 +5,7 @@
   width: 100%;
 }
 
-.quiz {
+.autoeval {
   display: flex;
   flex-direction: column;
   height: 100%;

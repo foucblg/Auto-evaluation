@@ -1,10 +1,10 @@
-export interface AuditData {
+export interface AutoevalData {
   topics: string[],
   possible_answers: string[],
-  questions: Record<string, AuditSegment[]>,
+  questions: Record<string, AutoevalSegment[]>,
 }
 
-export interface AuditSegment {
+export interface AutoevalSegment {
   question: string,
   outOf: number,
 }

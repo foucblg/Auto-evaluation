@@ -19,7 +19,7 @@ main {
   height: 100%;
 }
 
-.audit-div {
+.autoeval-div {
   flex: 1; /* Prend tout l'espace disponible */
   min-height: 50vh; /* Hauteur minimale pour le contenu */
   overflow: auto; /* Ajoute un défilement si le contenu est trop long */

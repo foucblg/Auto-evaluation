@@ -1,19 +1,19 @@
 import { Routes } from '@angular/router';
-import { ContexteComponent } from './views/audit/autoeval-contexte/autoeval-contexte.component';
-import { AuditComponent } from './views/audit/audit.component';
-import { AutoevalHomepageComponent } from './views/audit/autoeval-homepage/autoeval-homepage.component';
+import { ContexteComponent } from './views/autoeval/autoeval-contexte/autoeval-contexte.component';
+import { AutoevalComponent } from './views/autoeval/autoeval.component';
+import { AutoevalHomepageComponent } from './views/autoeval/autoeval-homepage/autoeval-homepage.component';
 
 export const routes: Routes = [
   {
-    path: 'audit',
-    title: "Audit d'inclusivité",
+    path: 'autoeval',
+    title: "Auto-évaluation d'inclusivité",
     children: [
       { path: '', redirectTo: 'accueil', pathMatch: 'full' },
       { path: 'accueil', component: AutoevalHomepageComponent },
       { path: 'contexte', component: ContexteComponent },
-      { path: ':id', component: AuditComponent }, 
+      { path: ':id', component: AutoevalComponent }, 
       { path: '**', redirectTo: 'accueil' },
     ],
   },
-  { path: '', redirectTo: 'audit/accueil', pathMatch: 'full' },
+  { path: '', redirectTo: 'autoeval/accueil', pathMatch: 'full' },
 ];

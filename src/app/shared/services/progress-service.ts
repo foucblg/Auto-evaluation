@@ -1,7 +1,7 @@
 import {inject, Injectable, signal } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { DataService } from "./audit-service";
+import { DataService } from "./autoeval-service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,23 +16,23 @@ export class ProgressService {
   answers = signal(<number[]>[]);
 
   goToBegining() {
-    this.router.navigate(["audit", "contexte"], { onSameUrlNavigation: 'ignore' });
+    this.router.navigate(["autoeval", "contexte"], { onSameUrlNavigation: 'ignore' });
   }
 
   start() {
-    this.dataService.startAudit();
-    this.router.navigate(["audit", this.dataService.questionNumber().toString()], {
+    this.dataService.startAutoeval();
+    this.router.navigate(["autoeval", this.dataService.questionNumber().toString()], {
     });
   }
 
   goToEnd() {
-    this.router.navigate(["audit", "end"], { replaceUrl: true });
+    this.router.navigate(["autoeval", "end"], { replaceUrl: true });
   }
 
   goToNext() {
     this.dataService.getNewQuestion();
     if (this.dataService.step() !== 'end') {
-      this.router.navigate(["audit", this.dataService.questionNumber().toString()], {
+      this.router.navigate(["autoeval", this.dataService.questionNumber().toString()], {
       });
     } else {
       this.goToEnd();
@@ -42,7 +42,7 @@ export class ProgressService {
   goToPrevious() {
     this.dataService.getPreviousQuestion();
     if (this.dataService.step() !== 'start') {
-      this.router.navigate(["audit", this.dataService.questionNumber().toString()], {
+      this.router.navigate(["autoeval", this.dataService.questionNumber().toString()], {
       });
     } else {
       this.goToBegining();

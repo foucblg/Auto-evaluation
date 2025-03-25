@@ -1,6 +1,6 @@
 <!-- Mise en place soit de la page de garde, soit de la page de fin ou alors des cartes questions -->
 @if (dataService.step() == "end") {
-  <app-quiz-endpage></app-quiz-endpage>
+  <app-autoeval-endpage></app-autoeval-endpage>
 } 
 @else {
   <div class="quiz">
@@ -71,10 +71,10 @@
     </div>
 
 
-    <!-- Mise en place des cartes de l'audit -->
-    <app-audit-card></app-audit-card>
+    <!-- Mise en place des cartes de l'auto-évaluation -->
+    <app-autoeval-card></app-autoeval-card>
 
-    <!-- Mise en place des boutons pour avancer dans l'audit -->
+    <!-- Mise en place des boutons pour avancer dans l'auto-évaluation -->
     <div class="lower-section">
       <p-divider class="divider" />
 
@@ -89,7 +89,7 @@
         </p-button>
         <p-button 
         class="suivant-page" 
-        (click)="auditCard()!.choiceBox()!.answer()"
+        (click)="autoevalCard()!.choiceBox()!.answer()"
         severity="primary">
           Suivant
           <i class="pi pi-arrow-right"></i>
