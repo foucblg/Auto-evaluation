@@ -12,8 +12,8 @@
 }
 
 .answer-box {
-  position:absolute;
-  top: 350px;
+  position: relative;
+  bottom: 0px;
   display: flex;
   flex-direction: column;
   gap: 16px;
