@@ -1,5 +1,5 @@
 <div>
-  <h1>L'auto-évaluation est fini</h1>
+  <h1>L'auto-évaluation est finie</h1>
   <p>
     Vous avez obtenus les scores suivants : 
     <br />
@@ -8,4 +8,55 @@
       <br />
     }
   </p>
+
+    <!-- Mise en place du grade an fonction du score obtenu :
+    - score < 0.2 - Grade E
+    - 0.2 <= score <0.5 - Grade D
+    - 0.5 <= score <0.7 - Grade C
+    - 0.7 <= score <0.9 - Grade B
+    - 0.9 <= score <= 1 - Grade A
+    -->
+  <div class = "grade">
+    <p style ="margin-top:50px;">Votre grade est </p>
+    @if (get_score() < 0.2){
+        <p-image
+        src="images/Score_E.png"
+        alt="Le grade du Quiz est E."
+        [imageStyle]="{ objectFit: 'contain' }"
+        width="20%"
+      />
+    }
+    @else if (get_score() < 0.5) {
+        <p-image
+        src="images/Score_D.png"
+        alt="Le grade du Quiz est D."
+        [imageStyle]="{ objectFit: 'contain' }"
+        width="20%"
+      />
+    }
+    @else if (get_score() < 0.7) {
+        <p-image
+        src="images/Score_C.png"
+        alt="Le grade du Quiz est C."
+        [imageStyle]="{ objectFit: 'contain' }"
+        width="20%"
+      />
+    }
+    @else if (get_score() < 0.9) {
+        <p-image
+        src="images/Score_B.png"
+        alt="Le grade du Quiz est B."
+        [imageStyle]="{ objectFit: 'contain' }"
+        width="20%"
+      />
+    }
+    @else {
+        <p-image
+        src="images/Score_A.png"
+        alt="Le grade du Quiz est A."
+        [imageStyle]="{ objectFit: 'contain' }"
+        width="20%"
+      />
+    }
+  </div>
 </div>
